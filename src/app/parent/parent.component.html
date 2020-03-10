@@ -1,4 +1,5 @@
 <h1>Parent</h1>
+<a routerLink='/others'>Others</a>
 <div *ngIf="($userData | async) as data else loading">
     <app-child [gridData]='data'></app-child>
 </div>

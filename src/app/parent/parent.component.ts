@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 // Representational class for api data
@@ -24,7 +24,7 @@ const dummyData: Data[] = [
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss']
 })
-export class ParentComponent implements OnInit {
+export class ParentComponent implements OnInit, OnDestroy {
 
   public rawData: Data[];
   public $userData = new BehaviorSubject<Data[]>(this.rawData)
@@ -34,6 +34,11 @@ export class ParentComponent implements OnInit {
     setTimeout(() => {
       this.$userData.next(dummyData);   
     }, 3000);
+  }
+
+  ngOnDestroy() {
+    console.log('ondestroy called')
+    this.$userData.unsubscribe()
   }
 
 }
