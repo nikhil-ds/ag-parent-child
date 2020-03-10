@@ -1,0 +1,7 @@
+<h1>Parent</h1>
+<div *ngIf="($userData | async) as data else loading">
+    <app-child [gridData]='data'></app-child>
+</div>
+<ng-template #loading>
+    <h3>Loading...</h3>
+</ng-template>
